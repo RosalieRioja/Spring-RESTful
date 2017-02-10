@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <parent>
+    <groupId>com</groupId>
+    <artifactId>infra</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.persistence</groupId>
+  <artifactId>persistence</artifactId>
+  <name>persistence</name>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.hibernate.javax.persistence</groupId>
+      <artifactId>hibernate-jpa-2.1-api</artifactId>
+    </dependency>
+    <!--
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-ehcache</artifactId>
+    </dependency>
+-->
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>config.properties</id>
+
+      <build>
+        <filters>
+          <filter>src/main/resources/config.properties</filter>
+        </filters>
+        <resources>
+          <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+          </resource>
+        </resources>
+      </build>
+
+    </profile>
+
+    <profile>
+      <id>development</id>
+
+      <properties>
+        <postgres.dialect>org.hibernate.dialect.PostgreSQLDialect</postgres.dialect>
+        <postgres.driver>org.postgresql.Driver</postgres.driver>
+        <postgres.url>jdbc:postgresql://localhost/hibernateannotation</postgres.url>
+        <postgres.password>postgres</postgres.password>
+        <postgres.username>postgres</postgres.username>
+      </properties>
+
+      <build>
+        <resources>
+          <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+          </resource>
+        </resources>
+      </build>   
+
+    </profile>
+    
+  </profiles>
+
+</project>

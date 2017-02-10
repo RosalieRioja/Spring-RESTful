@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+    	<property name="hibernate.hbm2ddl.auto">update</property>
+
+        <property name="hibernate.dialect">${postgres.dialect}</property>
+        <property name="hibernate.connection.driver_class">${postgres.driver}</property>
+        <property name="hibernate.connection.url">${postgres.url}</property>
+        <property name="hibernate.connection.username">${postgres.username}</property>
+        <property name="hibernate.connection.password">${postgres.password}</property>
+        
+        <mapping class="com.model.Person"></mapping>
+        <mapping class="com.model.PersonAddress"></mapping>
+        <mapping class="com.model.Contacts"></mapping>
+        <mapping class="com.model.Roles"></mapping>
+    </session-factory>
+</hibernate-configuration >
