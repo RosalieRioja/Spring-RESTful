@@ -13,14 +13,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersonCRUD implements CRUD<PersonDTO> {
 
-	@Autowired
 	private PersonDao personDao;
-	@Autowired
 	private ConvertModelDTO convertModelDTO;
 
-	public PersonCRUD() {
-		//personDao = new PersonDao();
-		//convertModelDTO = new ConvertModelDTO();
+	@Autowired
+	public PersonCRUD(PersonDao personDaoParam, ConvertModelDTO convertModelDTOParam) {
+		personDao = personDaoParam;
+		convertModelDTO = convertModelDTOParam;
 	}
 
 	public void create(PersonDTO person) {
