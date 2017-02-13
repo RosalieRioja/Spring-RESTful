@@ -12,12 +12,14 @@ import org.springframework.web.servlet.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 import java.text.*;
 import java.text.DateFormat;
 
 @Controller
+@RequestMapping("/Contact")
 public class ContactController {
 
     private CRUD<PersonDTO> personCRUD;
@@ -27,7 +29,7 @@ public class ContactController {
         personCRUD = personCRUDParam;
     }
 
-    @RequestMapping("/Contact/list")
+    @RequestMapping("/list")
     public ModelAndView list(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String personId = request.getParameter("personId");
 
@@ -41,7 +43,7 @@ public class ContactController {
         return model;
     }
 
-    @RequestMapping("/Contact/add")
+    @RequestMapping("/add")
     public ModelAndView add(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView model = new ModelAndView("AddContact");
         model.addObject("personId", request.getParameter("personId"));
@@ -49,7 +51,7 @@ public class ContactController {
         return model;
     }
 
-    @RequestMapping("/Contact/edit")
+    @RequestMapping("/edit")
     public ModelAndView edit(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView model = new ModelAndView("AddContact");
 
@@ -70,7 +72,7 @@ public class ContactController {
         return model;
     }
 
-    @RequestMapping("/Contact/delete")
+    @RequestMapping("/delete")
     public ModelAndView delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView model = new ModelAndView("redirect:/Contact/list");
 
@@ -91,7 +93,7 @@ public class ContactController {
         return model;
     }
 
-    @RequestMapping("/Contact/submit")
+    @RequestMapping("/submit")
     public ModelAndView submit(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView model = new ModelAndView("redirect:/Contact/list");
 

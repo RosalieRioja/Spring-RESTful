@@ -5,6 +5,12 @@
 
 <script>
 
+$(document).ready(function(){
+    if("${not empty contact.id}") {
+        $('#type').val("${contact.type}");
+    }
+});
+
 function validateAddContact() {
     $('.form-add-contact-error').hide();
     var valid = true;
@@ -48,7 +54,7 @@ function validateAddContact() {
             <input type="hidden" name="personId" id="personId" value="${personId}">
             <input type="hidden" name="contactId" id="contactId" value="${contact.id}">
 
-            Contact Type:   <select name="type" id="type" value="${contact.type}">
+            Contact Type:   <select name="type" id="type">
                                 <option></option>
                                 <option value="LANDLINE">Landline</option>
                                 <option value="MOBILE">Mobile</option>

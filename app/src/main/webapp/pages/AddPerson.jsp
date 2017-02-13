@@ -5,6 +5,13 @@
 
 <script>
 
+$(document).ready(function(){
+    if("${not empty person.id}") {
+        $('#rdEmployed' + '${person.currentlyEmployed}').prop("checked", true);
+        $('#rdGender' + '${person.gender}').prop("checked", true);
+    }
+});
+
 function validateAddPerson() {
     $('.form-add-person-error').hide();
     var valid = true;
@@ -64,10 +71,12 @@ function validateAddPerson() {
             Birthday:   <input      type="date" id="birthday"   name="birthday"     size="20px" required value="${person.birthday}"/> <br>
             Grade Weighted Average: <input type="number" step="0.01" id="gwa" name="gwa"        size="20px" required value="${person.GWA}"/> <br>
             Date Hired: <input      type="date" id="datehired"  name="datehired"    size="20px" required value="${person.dateHired}"/> <br>
-            Employed:   <input type="radio" name="employed" value="true"/> True <input type="radio" name="employed" value="false"/> False
-                <label style="display:none; color:red;" id="employedError" class="form-add-person-error">Please select an employment status.</label> <br>
-            Gender: <input type="radio" name="gender" value="FEMALE"/> Female <input type="radio" name="gender" value="MALE"/> Male
-                <label style="display:none; color:red;" id="genderError" class="form-add-person-error">Please select gender.</label> <br>
+            Employed:   <input type="radio" name="employed" value="true"    id="rdEmployedtrue"/> True 
+                        <input type="radio" name="employed" value="false"   id="rdEmployedfalse"/> False
+                        <label style="display:none; color:red;" id="employedError" class="form-add-person-error">Please select an employment status.</label> <br>
+            Gender: <input type="radio" name="gender" value="FEMALE"    id="rdGenderFEMALE"/> Female 
+                    <input type="radio" name="gender" value="MALE"      id="rdGenderMALE"/> Male
+                    <label style="display:none; color:red;" id="genderError" class="form-add-person-error">Please select gender.</label> <br>
             Address: <br>
             Street number:  <input  type="number"   id="streetnumber"   name="streetnumber" size="20px" required value="${person.address.streetNumber}"> <br>
             Barangay:   <input      type="text"     id="barangay"       name="barangay"     size="20px" required value="${person.address.barangay}"> <br>

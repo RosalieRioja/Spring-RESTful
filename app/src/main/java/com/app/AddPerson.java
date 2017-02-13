@@ -12,12 +12,14 @@ import org.springframework.web.servlet.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 import java.text.*;
 import java.text.DateFormat;
 
-@Controller
+@RestController
+@RequestMapping("/Person")
 public class AddPerson {
 
     private CRUD<PersonDTO> personCRUD;
@@ -27,7 +29,7 @@ public class AddPerson {
         personCRUD = personCRUDParam;
     }
     
-    @RequestMapping("/Person/list")
+    @RequestMapping("/list")
     public ModelAndView list(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         ModelAndView model = new ModelAndView("ListPerson");
@@ -37,7 +39,7 @@ public class AddPerson {
         return model;
     }
 
-    @RequestMapping("/Person/add")
+    @RequestMapping("/add")
     public ModelAndView add(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         ModelAndView model = new ModelAndView("AddPerson");
@@ -45,7 +47,7 @@ public class AddPerson {
         return model;
     }
 
-    @RequestMapping("/Person/edit")
+    @RequestMapping("/edit")
     public ModelAndView edit(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         ModelAndView model = new ModelAndView("AddPerson");
@@ -55,7 +57,7 @@ public class AddPerson {
         return model;
     }
 
-    @RequestMapping("/Person/delete")
+    @RequestMapping("/delete")
     public ModelAndView delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         ModelAndView model = new ModelAndView("redirect:/Person/list");
@@ -64,7 +66,7 @@ public class AddPerson {
         return model;
     }
 
-    @RequestMapping("/Person/submit")
+    @RequestMapping("/submit")
     public ModelAndView submit(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         ModelAndView model = new ModelAndView("redirect:/Person/list");
