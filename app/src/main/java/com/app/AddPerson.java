@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.*;
 //import org.springframework.web.servlet.mvc.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+//import org.springframework.http.ResponseEntity;
 
 import java.util.*;
 import java.text.*;
@@ -29,14 +31,21 @@ public class AddPerson {
         personCRUD = personCRUDParam;
     }
     
+    @GetMapping("/getList")
+    public List<PersonDTO> getList() {
+        return personCRUD.read(SortValue.SORT_LASTNAME_ASC);
+    }
+
     @RequestMapping("/list")
     public ModelAndView list(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+    
         ModelAndView model = new ModelAndView("ListPerson");
         List<PersonDTO> lstPerson = personCRUD.read(SortValue.SORT_LASTNAME_ASC);
         model.addObject("people", lstPerson);
 
         return model;
+        
+        //return new ModelAndView("ListPerson");
     }
 
     @RequestMapping("/add")

@@ -1,7 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<!--<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>-->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+<script>
+
+$(document).ready(function() {
+    $.ajax(
+    {
+        type: "GET",
+        url: "/Person/getList",
+        data: '{}',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            //alert("success " + response);
+        },
+        failure: function (response) {
+            //alert("failure " + response);
+        },
+        error: function (response) {
+            //alert("error " + response);
+        },
+        complete: function (response) {
+
+        }
+    });
+});
+
+function listContact(personId) {
+    //var jsonString = "${person.id}";
+    $.ajax(
+    {
+        type: "POST",
+        url: "/Contact/getList",
+        //data: JSON.stringify({"personId":"${person.id}"}),
+        data: JSON.stringify(personId),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            alert("success " + response);
+        },
+        failure: function (response) {
+            alert("failure " + response);
+        },
+        error: function (response) {
+            alert("error " + response);
+        },
+        complete: function (response) {
+
+        }
+    });
+}
+
+</script>
 
 <!-- LIST PERSON JSP -->
 <html>
@@ -76,10 +128,10 @@
                         <td>${person.address.barangay}</td>
                         <td>${person.address.city}</td>
                         <td>${person.address.zipCode}</td>
-                        <td><form action="/Contact/list" method="post">
-                                <input type="hidden" name="personId" id="personId" value="${person.id}">
-                                <input type="submit" value="View Contact"/>
-                            </form>
+                        <td><!--<form action="/Contact/list" method="post" onsubmit="listContact(${person.id});">-->
+                                <!--<input type="hidden" name="personId" id="personId" value="${person.id}">-->
+                                <input type="button" value="View Contact" onclick="listContact(${person.id});"/>
+                            <!--</form>-->
                         </td>
                     </tr>
                 </c:forEach>

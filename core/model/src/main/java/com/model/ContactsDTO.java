@@ -7,7 +7,7 @@ public class ContactsDTO {
 	private int id;
 	private ContactType type;
 	private String value;
-	public Person person;
+	//public Person person;
 	
 	public ContactsDTO() {}
 	
@@ -35,13 +35,13 @@ public class ContactsDTO {
 		this.value = value_param;
 	}
 
-	public Person getPerson() {
-		return this.person;
-	}
-
-	public void setPerson(Person person_param) {
-		this.person = person_param;
-	}
+	//public Person getPerson() {
+//	//	return this.person;
+//	//}
+//
+	//public void setPerson(Person person_param) {
+	//	this.person = person_param;
+	//}
 
 	public boolean equals(Object obj) {
 		if (obj == null) return false;
