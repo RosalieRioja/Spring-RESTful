@@ -12,31 +12,57 @@ import org.springframework.web.servlet.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+//import org.springframework.http.ResponseEntity;
 
 import java.util.*;
 import java.text.*;
 import java.text.DateFormat;
 
-@Controller
+@RestController
 @RequestMapping("/Contact")
 public class ContactController {
 
     private CRUD<PersonDTO> personCRUD;
+    private String personId;
 
     @Autowired
     public ContactController(CRUD<PersonDTO> personCRUDParam) {
         personCRUD = personCRUDParam;
     }
 
+    @PostMapping("/getList")
+    public Set<ContactsDTO> getList(@RequestBody String id) {
+        personId = id;
+
+        System.out.println("getList requestBody = " + personId);
+
+        PersonDTO lstContact = personCRUD.get(Integer.parseInt(personId));
+        return lstContact.getContacts();
+    }
+/*
     @RequestMapping("/list")
-    public ModelAndView list(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public PersonDTO list() {
         String personId = request.getParameter("personId");
 
-        ModelAndView model = new ModelAndView("ListContact");
         if(personId == null) {
             personId = String.valueOf(request.getSession().getAttribute("personId"));
         }
+        //PersonDTO lstContact = personCRUD.get(Integer.parseInt(personId));
+        return personCRUD.get(Integer.parseInt(personId));
+    }
+*/
+    @RequestMapping("/list")
+    public ModelAndView list(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String id = request.getParameter("personId");
+
+        ModelAndView model = new ModelAndView("ListContact");
+        if(id == null) {
+            id = String.valueOf(request.getSession().getAttribute("personId"));
+        }
+        personId = id;
+
         PersonDTO lstContact = personCRUD.get(Integer.parseInt(personId));
         model.addObject("person", lstContact);
 

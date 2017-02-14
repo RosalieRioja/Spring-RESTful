@@ -5,7 +5,7 @@
 
 <script>
 
-$(document).ready(function(){
+$(document).ready(function() {
     if("${not empty person.id}") {
         $('#rdEmployed' + '${person.currentlyEmployed}').prop("checked", true);
         $('#rdGender' + '${person.gender}').prop("checked", true);

@@ -65,7 +65,7 @@ public class ConvertModelDTOImpl implements ConvertModelDTO {
 	        	newContactDTO.setId(contact.getId());
 	        	newContactDTO.setType(contact.getType());
 	        	newContactDTO.setValue(contact.getValue());
-	        	newContactDTO.setPerson(contact.getPerson());
+	        	//newContactDTO.setPerson(contact.getPerson());
 
 	        	contactsDTO.add(newContactDTO);
 	    	}
@@ -83,7 +83,7 @@ public class ConvertModelDTOImpl implements ConvertModelDTO {
 	        	newContactModel.setId(contact.getId());
 	        	newContactModel.setType(contact.getType());
 	        	newContactModel.setValue(contact.getValue());
-	        	newContactModel.setPerson(contact.getPerson());
+	        	//newContactModel.setPerson(contact.getPerson());
 
 	        	contactsModel.add(newContactModel);
 	    	}
