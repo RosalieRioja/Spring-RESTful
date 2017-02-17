@@ -33,7 +33,7 @@ function listContact(personId) {
     $.ajax(
     {
         type: "POST",
-        url: "/Contact/getList",
+        url: "/Contact/getList",//?id=" + personId,
         //data: JSON.stringify({"personId":"${person.id}"}),
         data: JSON.stringify(personId),
         contentType: "application/json; charset=utf-8",

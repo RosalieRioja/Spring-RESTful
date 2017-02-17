@@ -41,6 +41,7 @@ public class ContactController {
         PersonDTO lstContact = personCRUD.get(Integer.parseInt(personId));
         return lstContact.getContacts();
     }
+<<<<<<< HEAD
 
     @RequestMapping("/list")
     public ModelAndView list(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -50,6 +51,28 @@ public class ContactController {
         if(id == null) {
             id = String.valueOf(request.getSession().getAttribute("personId"));
         }
+=======
+/*
+    @RequestMapping("/list")
+    public PersonDTO list() {
+        String personId = request.getParameter("personId");
+
+        if(personId == null) {
+            personId = String.valueOf(request.getSession().getAttribute("personId"));
+        }
+        //PersonDTO lstContact = personCRUD.get(Integer.parseInt(personId));
+        return personCRUD.get(Integer.parseInt(personId));
+    }
+*/
+    @RequestMapping("/list")
+    public ModelAndView list(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String id = request.getParameter("personId");
+
+        ModelAndView model = new ModelAndView("ListContact");
+        if(id == null) {
+            id = String.valueOf(request.getSession().getAttribute("personId"));
+        }
+>>>>>>> 867920d3809d918d9ed9aa0be1eeee387ab1b5bc
         personId = id;
 
         PersonDTO lstContact = personCRUD.get(Integer.parseInt(personId));
